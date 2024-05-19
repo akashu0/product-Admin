@@ -1,0 +1,118 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  transition: opacity 0.1s ease;
+}
+.modal {
+  position: absolute;
+  top: 10%;
+  width: 80%;
+  max-width: 1100px;
+  min-height: 500px;
+  background-color: #ebf8ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  opacity: 0.5;
+  transform: translateY(-100vh);
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.showModal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.showBackdrop {
+  opacity: 1;
+}
+
+.submodal {
+  position: fixed; /* changed from absolute to fixed for better control in a full screen context */
+  top: 10%;
+  left: 50%; /* centering the modal horizontally */
+  transform: translate(
+    -50%,
+    -100vh
+  ); /* adjusting transform for horizontal centering and off-screen start */
+  width: 80%;
+  max-width: 1100px;
+  min-height: 500px;
+  height: auto;
+  background-color: #ebf8ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: stretch;
+  padding: 10px;
+  flex-direction: column;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (max-width: 768px) {
+  .submodal {
+    width: 95%;
+    top: 5%;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .submodal {
+    width: 100%;
+    top: 0;
+    border-radius: 0;
+    height: 100%; /* Making the modal full screen on very small devices */
+    overflow-y: auto; /* Allows scrolling if content exceeds the screen height */
+  }
+}
+
+.showSubModal {
+  opacity: 1;
+  transform: translate(-50%, 0); /* updated to maintain horizontal centering */
+}
+.closeBtn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.closeBtn span {
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+  background-color: transparent;
+}
+
+.closeBtn span:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    top: 5%;
+    min-height: 300px; /* Adjust height as necessary */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    top: 2%;
+    border-radius: 5px;
+  }
+}
